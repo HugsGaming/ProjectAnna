@@ -1,0 +1,20 @@
+<div class="row">
+    <% if(reports.length > 0) { %>
+        <% reports.forEach((report, index, _) => { %>
+            <div class="col mx-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= report.title %></h5>
+                        <p class="card-text"><%= report.description %></p>
+                        <a href="/reports/<%= report._id %> " class="btn btn-primary">Go to Report</a>
+                    </div>
+                </div>
+            </div>
+            <% if(index % 6 == 0 && reports.length >= 6 && index > 5) { %>
+                <div class="w-100"></div>
+            <% } %> 
+        <% }) %> 
+    <% } else { %>
+        <h1 class="display-1">No reports yet</h1>
+    <% } %>  
+</div>

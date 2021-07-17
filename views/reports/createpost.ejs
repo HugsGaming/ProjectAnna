@@ -1,0 +1,21 @@
+<form action="/reports" method="POST">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title" required>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="8"required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="students" class="form-label" >Student Responsible</label>
+        <select class="form-select" aria-label="Default select example" id="students" name="student">
+            <% students.forEach(student => { %> 
+                <option value="<%= student._id %>"><%= student.name %></option>
+            <% }) %> 
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary btn-lg">Submit Report</button>
+    </div>
+</form>
