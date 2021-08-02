@@ -1,7 +1,8 @@
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-const reportRouter = require('./routes/report.routes')
+const reportRouter = require('./routes/report.routes');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
 });
+app.use(cookieParser());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.render('index', {title: 'Home'});
