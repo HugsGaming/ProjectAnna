@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
             return regex.test(val);
         }, 'Enter a valid iAcademy email address']
     },
-    passwords: {
+    password: {
         type: String,
         required: true,
         minlength: 8
