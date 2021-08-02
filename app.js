@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const reportRouter = require('./routes/report.routes');
+const authRoutes = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
@@ -38,6 +39,8 @@ app.get('/about', (req, res) => {
 });
 
 app.use('/reports', reportRouter);
+
+app.use(authRoutes);
 
 app.use((req, res) => {
     res.status(404).render('404', {title: '404 Page'});
