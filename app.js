@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 const reportRouter = require('./routes/report.routes');
 const authRoutes = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
+const {checkUser} = require('./middleware/auth.middleware')
 
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 8080
 
-mongoose.connect(process.env.MONGODB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 .then(result => {
     app.listen(port, () => {
         console.log(`Connected to the DB at port: ${port}`)
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 app.use(express.json());
 
+app.get('*', checkUser)
 app.get('/', (req, res) => {
     res.render('index', {title: 'Home'});
 });
