@@ -19,6 +19,16 @@
                     <a href="/reports/create" class="nav-link">Create Report</a>
                 </li>
             </ul>
+            <div class="col-md-3 text-end">
+                <% if(user) { %>
+                    <p class="text-light">Welcome <%= user.email %></p>
+                    <a href="/signout" class="btn btn-light btn-md">Sign Out</a>
+                <% } else { %>
+                    <a href="/login" class="btn btn-outline-light btn-md">Log In</a>
+                    <a href="/signup" class="btn btn-light btn-md">Sign Up</a>
+                <% } %>   
+            </div>
         </div>
+        
     </div>
 </nav>

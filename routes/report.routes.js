@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/create', (req, res) => {
     Student.find().then(result => {
-        res.render('./reports/createpost', {title: 'Create a Report', students: result});
+        res.render('./reports/createreport', {title: 'Create a Report', students: result});
     }).catch(err => console.error(err));
 });
 
