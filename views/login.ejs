@@ -1,4 +1,4 @@
-<form class="card container my-5 shadow">
+<form class="card container my-5 shadow needs-validation" novalidate>
     <h1 class="display-4 text-center mb-5">Log In</h1>
     <div class="row mb-5">
         <label for="email" class="col-sm-2 col-form-label">Email:</label>
@@ -6,7 +6,7 @@
             <input type="text" class="form-control form-control-md" id="email" name="email">
         </div>
     </div>
-    <div class="email error">
+    <div class="email error text-center" id="emailError">
 
     </div>
     <div class="row mb-5">
@@ -15,7 +15,7 @@
             <input type="password" class="form-control form-control-md" id="password" name="password">
         </div>
     </div>
-    <div class="password error">
+    <div class="password error text-center" id="passwordError">
         
     </div>
     <div class="d-grid gap-2 col-6 mx-auto mb-5">
@@ -26,14 +26,18 @@
     const form = document.querySelector('form');
     const emailError = document.querySelector('.email.error');
     const passwordError = document.querySelector('.password.error');
-
-    emailError.textContent = '';
-    passwordError.textContent = '';
-
     form.addEventListener('submit', async e => {
         e.preventDefault();
+
+        console.log(emailError);
+        console.log(passwordError);
+
+        emailError.textContent = '';
+        passwordError.textContent = '';
+
         const email = form.email.value;
         const password = form.password.value;
+        
         try {
             const res = await fetch('/login', {
                 method: 'POST',

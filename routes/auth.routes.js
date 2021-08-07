@@ -4,7 +4,7 @@ const User = require('../models/user')
 
 const router = express.Router();
 
-const handleError = err => {
+const handleErrors = err => {
     console.error(err.message, err.code);
     let errors = {email: '', password: ''};
 
@@ -61,7 +61,7 @@ router.post('/signup', async (req, res) => {
         res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000, secure: true});
         res.status(200).json({user: user._id});
     } catch (err) {
-        handleError(err);
+        const errors = handleErrors(err);
         console.log(errors);
         res.status(400).json({errors});
     }

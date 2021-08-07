@@ -33,11 +33,12 @@
     const emailError = document.querySelector('.email.error');
     const passwordError = document.querySelector('.password.error');
 
-    emailError.textContent = '';
-    passwordError.textContent = '';
-
     form.addEventListener('submit', async e => {
         e.preventDefault();
+        
+        emailError.textContent = '';
+        passwordError.textContent = '';
+
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
