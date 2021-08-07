@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const reportRouter = require('./routes/report.routes');
 const authRoutes = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
-const {checkUser} = require('./middleware/auth.middleware')
+const {checkUser, requireAuth} = require('./middleware/auth.middleware')
 
 require('dotenv').config();
 
@@ -40,7 +40,7 @@ app.get('/about', (req, res) => {
     res.render('about', {title: 'About Us'});
 });
 
-app.use('/reports', reportRouter);
+app.use('/reports', requireAuth, reportRouter);
 
 app.use(authRoutes);
 
